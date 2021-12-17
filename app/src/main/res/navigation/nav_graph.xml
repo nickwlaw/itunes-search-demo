@@ -2,6 +2,14 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph">
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/search_fragment">
 
+    <fragment
+        android:id="@+id/search_fragment"
+        android:name="com.nickwlaw.itunessearchdemo.ui.fragments.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search">
+
+    </fragment>
 </navigation>

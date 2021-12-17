@@ -13,7 +13,16 @@ class ITunesRepository(private val api: ITunesApi) {
     suspend fun searchITunesForSong(query: ITunesSearchQuery): Either<Failure, List<Song>> {
         recentSearches.add(query)
 
-        val response = api.getITunesSearchResult(query.term, query.country.isoCode, query.optionalParameters)
+        val response = api.getITunesSearchResult(
+            query.term,
+            query.country.isoCode,
+            query.media,
+            query.entity,
+            query.attribute,
+            query.limit,
+            query.explicit
+        )
+
         val results = mutableListOf<Song>()
 
         return if (response.isSuccessful) {

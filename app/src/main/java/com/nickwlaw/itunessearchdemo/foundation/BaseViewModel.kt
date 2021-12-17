@@ -43,8 +43,6 @@ abstract class BaseViewModel<UiStateType : UIState>(initialState: UiStateType) :
         _uiStateLiveData.value = uiState
     }
 
-    abstract suspend fun onStart(arguments: Map<String, String>? = null)
-
     fun interact(fetch: suspend () -> Unit) {
         viewModelScope.launch(exceptionHandler) {
             withContext(Dispatchers.IO) {
