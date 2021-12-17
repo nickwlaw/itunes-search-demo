@@ -15,10 +15,10 @@ data class ITunesSearchResponse(
         val trackName: String,
         val artistName: String,
         val collectionName: String,
-        val censoredName: String,
+        val censoredName: String?,
         val artworkUrl100: String?,
         val artworkUrl60: String?,
-        val viewUrl: String,
+        val viewUrl: String?,
         val previewUrl: String?,
         val trackTimeMillis: Long?
     ) {

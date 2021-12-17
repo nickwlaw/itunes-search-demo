@@ -9,6 +9,7 @@ class ITunesSearchDemoApplication(): Application() {
     override fun onCreate() {
         super.onCreate()
         initTimber()
+        initKoin()
     }
 
     private fun initTimber() {

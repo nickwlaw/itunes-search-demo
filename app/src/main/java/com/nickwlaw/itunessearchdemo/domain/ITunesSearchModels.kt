@@ -3,7 +3,11 @@ package com.nickwlaw.itunessearchdemo.domain
 data class ITunesSearchQuery(
     val term: String,
     val country: CountryCode,
-    val optionalParameters: Map<OptionalParams, String>
+    val media: String?,
+    val entity: String?,
+    val attribute: String?,
+    val limit: Int?,
+    val explicit: String?
 )
 
 enum class CountryCode(val isoCode: String) {
@@ -21,20 +25,12 @@ enum class CountryCode(val isoCode: String) {
     SOUTH_AFRICA("ZA")
 }
 
-enum class OptionalParams(key: String) {
-    MEDIA("media"),
-    ENTITY("entity"),
-    ATTRIBUTE("attribute"),
-    LIMIT("limit"),
-    EXPLICIT("explicit")
-}
-
 data class Song(
     val trackName: String,
     val artist: String,
     val album: String,
     val isExplicit: Boolean,
-    val censoredName: String,
+    val censoredName: String?,
     val iTunesUrl: String?,
     val previewUrl: String?,
     val duration: Long?
