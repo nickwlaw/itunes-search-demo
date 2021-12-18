@@ -10,19 +10,23 @@ import kotlinx.coroutines.*
 import timber.log.Timber
 
 sealed interface UIState {
-    interface ErrorLoadingUIState: UIState {
+    interface ErrorLoadingUIState : UIState {
         val errorUiState: ErrorUiState
         val isLoading: Boolean
     }
 
-    interface BasicUiState: UIState
+    interface BasicUiState : UIState
 }
 
-data class ErrorUiState(val hasError: Boolean = false, val errorMessage: String = "Something went wrong")
+data class ErrorUiState(
+    val hasError: Boolean = false,
+    val errorMessage: String = "Something went wrong"
+)
 
 abstract class BaseViewModel<UiStateType : UIState>(initialState: UiStateType) : ViewModel() {
 
-    val uiState: UiStateType get() = _uiStateLiveData.value ?: throw IllegalStateException("UiState is null")
+    val uiState: UiStateType
+        get() = _uiStateLiveData.value ?: throw IllegalStateException("UiState is null")
 
     private val _uiStateLiveData: MutableLiveData<UiStateType?> = MutableLiveData(null)
     val uiStateLiveData: LiveData<UiStateType?> get() = _uiStateLiveData

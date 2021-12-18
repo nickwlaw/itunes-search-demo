@@ -1,17 +1,27 @@
 package com.nickwlaw.itunessearchdemo.ui.adapters
 
 import android.content.Context
+import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.nickwlaw.itunessearchdemo.R
 import com.nickwlaw.itunessearchdemo.BR
 import com.nickwlaw.itunessearchdemo.domain.Song
+import com.nickwlaw.itunessearchdemo.ui.fragments.SearchDetailFragment
+import com.nickwlaw.itunessearchdemo.ui.viewmodels.SearchViewModel
+import org.koin.androidx.compose.getViewModel
 
-class SearchResultAdapter(searchResults: List<Song>) :
+class SearchResultAdapter(
+    searchResults: List<Song>,
+    private val onClick: (song: Song) -> Unit
+) :
     RecyclerView.Adapter<SearchResultAdapter.ViewHolder>() {
 
     lateinit var context: Context
@@ -29,8 +39,7 @@ class SearchResultAdapter(searchResults: List<Song>) :
 
         return ViewHolder(binding).listen { position, type ->
             val item = _searchResults[position]
-
-            Toast.makeText(context, item.artist, Toast.LENGTH_SHORT).show()
+            onClick(item)
         }
     }
 
@@ -59,6 +68,7 @@ class SearchResultAdapter(searchResults: List<Song>) :
     private fun <T : RecyclerView.ViewHolder> T.listen(event: (position: Int, type: Int) -> Unit): T {
         itemView.setOnClickListener {
             event.invoke(bindingAdapterPosition, itemViewType)
+            it.findNavController().navigate(R.id.action_SearchFragment_to_SearchDetailFragment)
         }
         return this
     }

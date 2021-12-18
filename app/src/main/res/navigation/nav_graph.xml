@@ -3,13 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/search_fragment">
+    app:startDestination="@id/SearchFragment">
 
     <fragment
-        android:id="@+id/search_fragment"
+        android:id="@+id/SearchFragment"
         android:name="com.nickwlaw.itunessearchdemo.ui.fragments.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search">
 
+        <action
+            android:id="@+id/action_SearchFragment_to_SearchDetailFragment"
+            app:destination="@+id/SearchDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/SearchDetailFragment"
+        android:name="com.nickwlaw.itunessearchdemo.ui.fragments.SearchDetailFragment"
+        android:label="fragment_search_detail"
+        tools:layout="@layout/fragment_search_detail">
+
+        <action
+            android:id="@+id/action_SearchDetailFragment_to_SearchFragment"
+            app:destination="@+id/SearchFragment" />
     </fragment>
 </navigation>

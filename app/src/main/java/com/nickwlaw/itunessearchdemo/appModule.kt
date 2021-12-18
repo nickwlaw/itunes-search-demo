@@ -18,6 +18,6 @@ val appModule = module {
     // repository singleton
     single { ITunesRepository(get()) }
 
-    // search view model
+    // viewmodels
     viewModel { SearchViewModel(get()) }
 }
