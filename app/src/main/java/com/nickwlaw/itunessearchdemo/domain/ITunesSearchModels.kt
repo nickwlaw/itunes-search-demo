@@ -10,6 +10,16 @@ data class ITunesSearchQuery(
     val explicit: String?
 )
 
+data class ITunesSongSearchQuery (
+    val term: String,
+    val country: CountryCode,
+    val media: String = "music",
+    val entity: String = "musicTrack",
+    val attribute: String = "songTerm",
+    val limit: Int? = null,
+    val explicit: String? = null
+)
+
 enum class CountryCode(val isoCode: String) {
     CANADA("CA"),
     GERMANY("DE"),

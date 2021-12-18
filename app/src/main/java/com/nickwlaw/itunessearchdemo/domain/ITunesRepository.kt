@@ -4,13 +4,12 @@ import com.nickwlaw.itunessearchdemo.data.ITunesApi
 import com.nickwlaw.itunessearchdemo.foundation.Either
 import com.nickwlaw.itunessearchdemo.foundation.Failure
 
-
 class ITunesRepository(private val api: ITunesApi) {
 
-    val recentSearches: MutableList<ITunesSearchQuery> = mutableListOf()
+    val recentSearches: MutableList<ITunesSongSearchQuery> = mutableListOf()
 
     // TODO("update to more specific failure")
-    suspend fun searchITunesForSong(query: ITunesSearchQuery): Either<Failure, List<Song>> {
+    suspend fun searchITunesForSong(query: ITunesSongSearchQuery): Either<Failure, List<Song>> {
         recentSearches.add(query)
 
         val response = api.getITunesSearchResult(
