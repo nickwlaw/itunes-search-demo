@@ -8,6 +8,8 @@ import com.nickwlaw.itunessearchdemo.domain.Song
 import com.nickwlaw.itunessearchdemo.foundation.BaseViewModel
 import com.nickwlaw.itunessearchdemo.foundation.ErrorUiState
 import com.nickwlaw.itunessearchdemo.foundation.UIState
+import com.nickwlaw.itunessearchdemo.foundation.bimap
+import com.nickwlaw.itunessearchdemo.ui.adapters.SearchResultAdapter
 import timber.log.Timber
 
 data class SearchUIState(
@@ -19,25 +21,27 @@ class SearchViewModel(
     private val iTunesRepo: ITunesRepository
 ) : BaseViewModel<UIState.ErrorLoadingUIState>(SearchUIState()) {
 
+    var adapter = SearchResultAdapter(emptyList())
+
     private val _searchResultsLiveData = MutableLiveData<List<Song>?>()
     val searchResultsLiveData: LiveData<List<Song>?>
         get() = _searchResultsLiveData
 
     fun fetchSearchResults(query: ITunesSearchQuery) {
+        updateState(SearchUIState(isLoading = true))
         _searchResultsLiveData.value = emptyList()
+        adapter.setItems(emptyList())
         interact {
             val results = iTunesRepo.searchITunesForSong(query)
 
-            when {
-                results.isLeft -> {
-                    Timber.d("Error fetching results")
-                    // TODO("update error handling")
-                }
-                results.isRight -> {
-                    Timber.d(results.toString())
-                }
-            }
-
+            results.bimap({
+                val errorUiState = ErrorUiState(true, it.message.orEmpty())
+                updateState(SearchUIState(errorUiState, false))
+            }, {
+                _searchResultsLiveData.value = it
+                adapter.setItems(it)
+                updateState(SearchUIState(isLoading = false))
+            })
         }
     }
 }

@@ -31,7 +31,10 @@ data class Song(
     val album: String,
     val isExplicit: Boolean,
     val censoredName: String?,
+    val artistUrl: String?,
+    val albumUrl: String?,
     val iTunesUrl: String?,
+    val artworkUrl: String?,
     val previewUrl: String?,
     val duration: Long?
 )
