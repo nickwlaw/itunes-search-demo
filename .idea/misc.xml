@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/ic_play_circle.xml" value="0.35625" />
         <entry key="app/src/main/res/drawable/search_bar.xml" value="0.36615384615384616" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.4231974921630094" />
+        <entry key="app/src/main/res/layout/fragment_search_detail.xml" value="0.3663949275362319" />
         <entry key="app/src/main/res/layout/item_search_result.xml" value="0.370018115942029" />
         <entry key="app/src/main/res/layout/main_activity.xml" value="0.5911458333333334" />
         <entry key="app/src/main/res/layout/main_fragment.xml" value="0.5770833333333333" />

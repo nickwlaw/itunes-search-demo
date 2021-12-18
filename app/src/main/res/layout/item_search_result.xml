@@ -79,7 +79,6 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:contentDescription="Track Album Art"
-                android:src="@{result.artworkUrl}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/tv_trackName"
