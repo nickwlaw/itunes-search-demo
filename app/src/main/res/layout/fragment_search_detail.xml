@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.fragments.SearchDetailFragment">
+
+    <data>
+
+        <variable
+            name="song"
+            type="com.nickwlaw.itunessearchdemo.domain.Song" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tv_trackName"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="6dp"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:text="@{song.trackName}"
+            android:textColor="@android:color/black"
+            android:textSize="22sp"
+            app:layout_constraintBottom_toTopOf="@id/tv_artistName"
+            app:layout_constraintEnd_toStartOf="@+id/iv_art"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="That Funny Feeling" />
+
+        <TextView
+            android:id="@+id/tv_artistName"
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="16dp"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:paddingStart="10dp"
+            android:text="@{song.artist}"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@id/tv_albumName"
+            app:layout_constraintEnd_toStartOf="@id/iv_art"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_trackName"
+            tools:text="Bo Burnham" />
+
+        <TextView
+            android:id="@+id/tv_albumName"
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="16dp"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:paddingStart="10dp"
+            android:text="@{song.album}"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@id/iv_art"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_artistName"
+            tools:text="Inside" />
+
+        <ImageView
+            android:id="@+id/iv_art"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:contentDescription="Track Album Art"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_trackName"
+            app:layout_constraintTop_toTopOf="parent"
+            app:loadImageUrl="@{song.artworkUrl}" />
+
+        <ImageView
+            android:id="@+id/ib_play"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:src="@drawable/ic_play_circle"
+            app:layout_constraintBottom_toBottomOf="@id/iv_art"
+            app:layout_constraintEnd_toEndOf="@id/iv_art"
+            app:layout_constraintStart_toStartOf="@id/iv_art"
+            app:layout_constraintTop_toTopOf="@id/iv_art" />
+
+        <LinearLayout
+            android:id="@+id/ll_itunes_link_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_albumName">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="6dp"
+                android:src="@drawable/ic_open_in_browser" />
+
+            <TextView
+                android:id="@+id/tv_itunes_link"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp"
+                android:text="Check out this song on ITunes"
+                android:textColor="@android:color/holo_blue_dark"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.fragments.SearchFragment">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.nickwlaw.itunessearchdemo.ui.viewmodels.SearchViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <SearchView
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/sv_search"
+            android:queryBackground="@android:color/transparent"
+            android:background="@drawable/search_bar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="6dp"
+            android:iconifiedByDefault="false"
+            android:queryHint="Search for a song" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_search_results"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sv_search"
+            app:setAdapter="@{viewModel.adapter}" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

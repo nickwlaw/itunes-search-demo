@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="result"
+            type="com.nickwlaw.itunessearchdemo.domain.Song" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_item_search_result"
+        android:layout_width="match_parent"
+        android:layout_height="132dp"
+        android:layout_marginBottom="8dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tv_trackName"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="16dp"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:text="@{result.trackName}"
+                android:textColor="@android:color/black"
+                android:textSize="22sp"
+                app:layout_constraintBottom_toTopOf="@id/tv_artistName"
+                app:layout_constraintEnd_toStartOf="@+id/iv_art"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="That Funny Feeling" />
+
+            <TextView
+                android:id="@+id/tv_artistName"
+                android:layout_width="0dp"
+                android:layout_height="25dp"
+                android:layout_marginEnd="16dp"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:paddingStart="10dp"
+                android:text="@{result.artist}"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@id/tv_albumName"
+                app:layout_constraintEnd_toStartOf="@id/iv_art"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_trackName"
+                tools:text="Bo Burnham" />
+
+            <TextView
+                android:id="@+id/tv_albumName"
+                android:layout_width="0dp"
+                android:layout_height="25dp"
+                android:layout_marginEnd="16dp"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:paddingStart="10dp"
+                android:text="@{result.album}"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/iv_art"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_artistName"
+                tools:text="Inside" />
+
+            <ImageView
+                android:id="@+id/iv_art"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:contentDescription="Track Album Art"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/tv_trackName"
+                app:layout_constraintTop_toTopOf="parent"
+                app:loadImageUrl="@{result.artworkUrl}" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+</layout>
