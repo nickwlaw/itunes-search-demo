@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.nickwlaw.itunessearchdemo.domain.ITunesRepository
 import com.nickwlaw.itunessearchdemo.domain.ITunesSearchQuery
+import com.nickwlaw.itunessearchdemo.domain.ITunesSongSearchQuery
 import com.nickwlaw.itunessearchdemo.domain.Song
 import com.nickwlaw.itunessearchdemo.foundation.BaseViewModel
 import com.nickwlaw.itunessearchdemo.foundation.ErrorUiState
@@ -27,10 +28,10 @@ class SearchViewModel(
     val searchResultsLiveData: LiveData<List<Song>?>
         get() = _searchResultsLiveData
 
-    fun fetchSearchResults(query: ITunesSearchQuery) {
+    // TODO("handle loading state")
+    fun fetchSearchResults(query: ITunesSongSearchQuery) {
         updateState(SearchUIState(isLoading = true))
         _searchResultsLiveData.value = emptyList()
-        adapter.setItems(emptyList())
         interact {
             val results = iTunesRepo.searchITunesForSong(query)
 
@@ -39,9 +40,12 @@ class SearchViewModel(
                 updateState(SearchUIState(errorUiState, false))
             }, {
                 _searchResultsLiveData.value = it
-                adapter.setItems(it)
                 updateState(SearchUIState(isLoading = false))
             })
         }
+    }
+
+    fun updateRecyclerView(songs: List<Song>) {
+        adapter.setItems(songs)
     }
 }

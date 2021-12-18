@@ -11,11 +11,13 @@ import com.nickwlaw.itunessearchdemo.ui.viewmodels.SearchViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.nickwlaw.itunessearchdemo.BR
 import com.nickwlaw.itunessearchdemo.domain.CountryCode
-import com.nickwlaw.itunessearchdemo.domain.ITunesSearchQuery
+import com.nickwlaw.itunessearchdemo.domain.ITunesSongSearchQuery
 
-class SearchFragment : BaseFragment<FragmentSearchBinding>(), SearchView.OnQueryTextListener {
+class SearchFragment : BaseFragment<FragmentSearchBinding>(), SearchView.OnQueryTextListener,
+    android.widget.SearchView.OnQueryTextListener {
 
     private val viewModel: SearchViewModel by viewModel()
+    private lateinit var songQuery: ITunesSongSearchQuery
 
     override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentSearchBinding =
         FragmentSearchBinding::inflate
@@ -31,28 +33,27 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), SearchView.OnQuery
 
         viewModel.searchResultsLiveData.observe(viewLifecycleOwner) { results ->
             if (results != null) {
-
+                viewModel.updateRecyclerView(results)
             }
         }
 
-        val query = ITunesSearchQuery(
-            "That Funny Feeling",
-            CountryCode.UNITED_STATES,
-            "music",
-            "musicTrack",
-            "songTerm",
-            null,
-            null
-        )
-        viewModel.fetchSearchResults(query)
+        binding.svSearch.setOnQueryTextListener(this)
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
-        TODO("Not yet implemented")
+        return false
     }
 
-    override fun onQueryTextChange(newText: String?): Boolean {
-        TODO("Not yet implemented")
-    }
+    // TODO("implement one second delay timer for calls")
+    override fun onQueryTextChange(queryText: String?): Boolean {
+        queryText ?: return true
 
+        songQuery = ITunesSongSearchQuery(
+            queryText,
+            CountryCode.UNITED_STATES
+        )
+        viewModel.fetchSearchResults(songQuery)
+
+        return true
+    }
 }

@@ -14,14 +14,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.SearchView
+        <SearchView
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:id="@+id/sv_search"
             android:queryBackground="@android:color/transparent"
+            android:background="@drawable/search_bar"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_margin="6dp"
             android:iconifiedByDefault="false"
             android:queryHint="Search for a song" />
 
