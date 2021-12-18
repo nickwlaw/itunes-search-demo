@@ -29,7 +29,21 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(), SearchView.OnQuery
             setVariable(BR.viewModel, viewModel)
         }
 
-        val query = ITunesSearchQuery("That Funny Feeling", CountryCode.UNITED_STATES, "music", "musicTrack", "songTerm", null, null)
+        viewModel.searchResultsLiveData.observe(viewLifecycleOwner) { results ->
+            if (results != null) {
+
+            }
+        }
+
+        val query = ITunesSearchQuery(
+            "That Funny Feeling",
+            CountryCode.UNITED_STATES,
+            "music",
+            "musicTrack",
+            "songTerm",
+            null,
+            null
+        )
         viewModel.fetchSearchResults(query)
     }
 

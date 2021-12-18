@@ -24,6 +24,15 @@
             android:layout_height="50dp"
             android:iconifiedByDefault="false"
             android:queryHint="Search for a song" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_search_results"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sv_search"
+            app:setAdapter="@{viewModel.adapter}" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
